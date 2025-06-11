@@ -1,4 +1,3 @@
-// Mobile Navigation
 document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const mobileNav = document.querySelector('.mobile-nav');
@@ -7,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
         mobileNav.style.display = mobileNav.style.display === 'block' ? 'none' : 'block';
     });
     
-    // Close mobile nav when clicking on a link
+   
     const mobileLinks = document.querySelectorAll('.mobile-nav a');
     mobileLinks.forEach(link => {
         link.addEventListener('click', function() {
@@ -15,12 +14,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Initialize recipes if on recipes page
+    
     if (document.querySelector('.recipes-main')) {
         initializeRecipes();
     }
     
-    // Newsletter form submission
+    
     const newsletterForm = document.getElementById('newsletter-form');
     if (newsletterForm) {
         newsletterForm.addEventListener('submit', function(e) {
@@ -31,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Contact form submission
+    
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
@@ -42,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Category card click event
+    
     const categoryCards = document.querySelectorAll('.category-card');
     categoryCards.forEach(card => {
         card.addEventListener('click', function() {
@@ -52,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Recipe data
+
 const recipes = [
     {
         id: 1,
@@ -946,51 +945,46 @@ const recipes = [
     }   
 ];
 
-// Initialize Recipes Page
-// Initialize Recipes Page
+
 function initializeRecipes() {
     const recipesGrid = document.getElementById('recipes-grid');
     const searchInput = document.getElementById('search-input');
     const categoryFilter = document.getElementById('category-filter');
     const difficultyFilter = document.getElementById('difficulty-filter');
     
-    // Get category from URL if present
+    
     const urlParams = new URLSearchParams(window.location.search);
     const urlCategory = urlParams.get('category');
     
     if (urlCategory) {
         categoryFilter.value = urlCategory;
-        // Immediately filter recipes when page loads with a category parameter
         filterRecipes();
     }
     
-    // Display all recipes initially if no category filter
     if (!urlCategory) {
         displayRecipes(recipes);
     }
     
-    // Rest of your code remains the same...
-    // Add event listeners for filtering
+
     searchInput.addEventListener('input', filterRecipes);
     categoryFilter.addEventListener('change', filterRecipes);
     difficultyFilter.addEventListener('change', filterRecipes);
     
-    // Function to filter recipes based on search and filters
+   
     function filterRecipes() {
         const searchTerm = searchInput.value.toLowerCase();
         const selectedCategory = categoryFilter.value;
         const selectedDifficulty = difficultyFilter.value;
         
         const filteredRecipes = recipes.filter(recipe => {
-            // Search term filter
             const matchesSearch = recipe.title.toLowerCase().includes(searchTerm) || 
                                recipe.description.toLowerCase().includes(searchTerm);
             
-            // Category filter
+            
             const matchesCategory = selectedCategory === 'all' || 
                                   recipe.category.includes(selectedCategory);
             
-            // Difficulty filter
+            
             const matchesDifficulty = selectedDifficulty === 'all' || 
                                     recipe.difficulty === selectedDifficulty;
             
@@ -1000,10 +994,10 @@ function initializeRecipes() {
         displayRecipes(filteredRecipes);
     
     
-    // Rest of your functions remain the same...
+  
     }
     
-    // Function to display recipes in the grid
+   
     function displayRecipes(recipesToDisplay) {
         recipesGrid.innerHTML = '';
         
@@ -1030,7 +1024,7 @@ function initializeRecipes() {
             recipesGrid.appendChild(recipeCard);
         });
         
-        // Add click event to view recipe buttons
+        
         const viewRecipeBtns = document.querySelectorAll('.view-recipe');
         viewRecipeBtns.forEach(btn => {
             btn.addEventListener('click', function(e) {
@@ -1041,7 +1035,7 @@ function initializeRecipes() {
         });
     }
     
-    // Function to show recipe modal
+   
     function showRecipeModal(recipeId) {
         const recipe = recipes.find(r => r.id === recipeId);
         const modal = document.getElementById('recipe-modal');
@@ -1074,12 +1068,11 @@ function initializeRecipes() {
         
         modal.style.display = 'block';
         
-        // Close modal when clicking X
         document.querySelector('.close-modal').addEventListener('click', function() {
             modal.style.display = 'none';
         });
         
-        // Close modal when clicking outside
+        
         window.addEventListener('click', function(e) {
             if (e.target === modal) {
                 modal.style.display = 'none';
